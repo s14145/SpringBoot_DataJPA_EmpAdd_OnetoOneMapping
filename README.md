@@ -2,7 +2,20 @@
 
 This application starts at port 6060.
 
-Entities are:
+The technologies used in this application are:
+
+1. Spring Boot Web
+
+2. Spring Boot Data JPA
+
+3. H2 Database
+
+4. Lombok
+
+5. Spring Boot Devtools
+
+
+**Entities are:**
 1. Employee
 2. Address
 

@@ -1,5 +1,6 @@
 package com.springbootjpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -16,15 +17,18 @@ import java.io.Serializable;
 @EqualsAndHashCode
 public class Address implements Serializable {
 
+    private static final long serialVersionUID = -382931871163162349L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "address_id")
-    private Long id;
+    @Column(name = "address_Id")
+    private Long address_Id;
 
     private String city;
 
     private String addressType;
 
     @OneToOne(mappedBy = "address")
+    @JsonBackReference
     private Employee employee;
 }

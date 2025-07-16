@@ -1,10 +1,8 @@
 package com.springbootjpa.error;
 
-import lombok.Builder;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
@@ -12,9 +10,12 @@ import java.time.LocalDateTime;
 @Setter
 public class ErrorResponse {
 
-    private LocalDateTime dateTime;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy hh:mm:ss")
+    private LocalDateTime timestamp;
+
     private String errorMessage;
 
-    public ErrorResponse() {
+    public ErrorResponse(){
     }
+
 }

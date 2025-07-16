@@ -6,7 +6,9 @@ import com.springbootjpa.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +29,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     public List<Employee> getEmployees(){
         List<Employee> employees = employeeRepository.findAll();
-        if(employees.isEmpty()){
+        if(CollectionUtils.isEmpty(employees)){
             throw new EmployeeNotFoundException(HttpStatus.NOT_FOUND, "No Employees found!!!");
         }
         return employees;

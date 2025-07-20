@@ -24,7 +24,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration{
 
-    private static final  String[] PUBLIC_URLS = {"/api/v1/auth/**", "/swagger-resources/**", "/swagger-ui.html/**"};
+    private static final  String[] PUBLIC_URLS = {"/api/v1/auth/login/**","/swagger-resources/**",
+            "/swagger-ui.html/**", "/actuator/**"};
 
     @Autowired
     private CustomUserDetailsService customUserDetailsService;

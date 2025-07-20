@@ -4,6 +4,7 @@ package com.springbootjpa.handler;
 import com.springbootjpa.error.ErrorResponse;
 import com.springbootjpa.exception.AddressNotFoundException;
 import com.springbootjpa.exception.EmployeeNotFoundException;
+import com.springbootjpa.exception.ObjectValidationException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,6 +56,14 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler(ObjectValidationException.class)
+    public ResponseEntity<ErrorResponse> handleObjectValidationException(ObjectValidationException objectValidationException){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setErrorMessage(objectValidationException.getMessage());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
 //    @ExceptionHandler(BadCredentialsException.class)
 //    public ResponseEntity<ErrorResponse> handleDisabledException(BadCredentialsException badCredentialsException){
 //        ErrorResponse errorResponse = new ErrorResponse();
@@ -76,12 +85,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorMap, HttpStatus.BAD_REQUEST);
     }
 
-//    @ExceptionHandler(Exception.class)
-//    public ResponseEntity<ErrorResponse> handleException(Exception exception){
-//        ErrorResponse errorResponse = new ErrorResponse();
-//        errorResponse.setDateTime(LocalDateTime.now());
-//        errorResponse.setErrorMessage(exception.getMessage());
-//        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-//    }
-
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleException(Exception exception){
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setTimestamp(LocalDateTime.now());
+        errorResponse.setErrorMessage(exception.getMessage());
+        return new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }

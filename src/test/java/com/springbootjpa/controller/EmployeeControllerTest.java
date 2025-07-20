@@ -44,9 +44,6 @@ class EmployeeControllerTest {
     @MockBean
     private EmployeeService employeeService;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     private Employee emp1;
 
     private List<Employee> employeeList;
@@ -68,6 +65,17 @@ class EmployeeControllerTest {
                 new Employee(103L, "Sam", 19, new Address(103L,"Kashmir","Home")));
     }
 
+    // Convert POJO to JSON string representation
+    public static String convertToJSON(final Object obj){
+        try{
+            ObjectMapper objectMapper = new ObjectMapper();
+            final String jsonContent = objectMapper.writeValueAsString(obj);
+            return jsonContent;
+        }catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
     @Test
     void getEmployeeByIdTest_Success() throws Exception {
         // TODO Check content of String in response
@@ -79,7 +87,7 @@ class EmployeeControllerTest {
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(objectMapper.writeValueAsString(emp1)));
+                .andExpect(MockMvcResultMatchers.content().string(convertToJSON(emp1)));
         // TODO Check content of String in response
     }
 
@@ -92,7 +100,7 @@ class EmployeeControllerTest {
                 .contentType(MediaType.APPLICATION_JSON));
 
         response.andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(objectMapper.writeValueAsString(employeeList)));
+                .andExpect(MockMvcResultMatchers.content().string(convertToJSON(employeeList)));
 
     }
 
@@ -103,7 +111,7 @@ class EmployeeControllerTest {
 
         ResultActions response = mockMvc.perform(MockMvcRequestBuilders.post(BASE_URL)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(objectMapper.writeValueAsString(employeeList))
+                .content(convertToJSON(employeeList))
         );
 
         response.andExpect(MockMvcResultMatchers.status().isCreated())

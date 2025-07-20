@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 
 import javax.validation.*;
+import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,7 +15,7 @@ public class ObjectsValidator<T> {
     private final ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
     private final Validator validator = validatorFactory.getValidator();
 
-    public void validate(T objectToValidate){
+    public Set<String> validate(T objectToValidate){
         Set<ConstraintViolation<T>> violations = validator.validate(objectToValidate);
         if(!violations.isEmpty()){
             Set<String> errorMsg = violations
@@ -23,6 +24,6 @@ public class ObjectsValidator<T> {
                     .collect(Collectors.toSet());
             throw new ObjectValidationException(errorMsg, objectToValidate.getClass().getSimpleName());
         }
+        return Collections.emptySet();
     }
-
 }

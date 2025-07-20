@@ -24,13 +24,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserRepositoryTest {
 
     /**
-    private static final String IMAGE_NAME = "gvenzl/oracle-xe:21-slim-faststart";
-    private static final String CONTAINER_ORC_USERNAME = "testuser";
-    private static final String CONTAINER_ORC_PASSWORD = "testpwd";
+     private static final String IMAGE_NAME = "gvenzl/oracle-xe:21-slim-faststart";
+     private static final String CONTAINER_ORC_DATABASE = "TestDB";
+     private static final String CONTAINER_ORC_USERNAME = "testuser";
+     private static final String CONTAINER_ORC_PASSWORD = "testpwd";
 
     @Container
     static OracleContainer oracleContainer = new OracleContainer(IMAGE_NAME)
-            //.withDatabaseName("TestDB")
+            //.withDatabaseName(CONTAINER_ORC_DATABASE)
             //.withStartupTimeout(Duration.ofMinutes(3))
             .withUsername(CONTAINER_ORC_USERNAME)
             .withPassword(CONTAINER_ORC_PASSWORD);
@@ -39,6 +40,7 @@ class UserRepositoryTest {
     @DynamicPropertySource
     static void setDatasourceProperties(DynamicPropertyRegistry propertyRegistry) {
         propertyRegistry.add("spring.datasource.url", oracleContainer::getJdbcUrl);
+    propertyRegistry.add("spring.datasource.databasename", oracleContainer::getDatabasename;
         propertyRegistry.add("spring.datasource.username", oracleContainer::getUsername);
         propertyRegistry.add("spring.datasource.password", oracleContainer::getPassword);
     }

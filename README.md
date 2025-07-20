@@ -14,23 +14,34 @@ The technologies used in this application are:
 
 5. Spring Boot Devtools
 
+6. Hikari Connection Pool
+
+7. Spring Boot Actuator
+
+8. JWT for Token
+
+9. TestContainers for Integration Testing (Make sure Docker Desktop is running in the machine)
+
 
 **Entities are:**
 1. Employee
 2. Address
+3. Privilege
+4. Users
 
 **Application APIs are:**
 
-1. GET Employee: http://localhost:6060/api/v1/employees/1
+1. GET Employee: http://localhost:6060/project/api/v1/employees/1
 
-2. GET Employees: http://localhost:6060/api/v1/employees/
+2. GET Employees: http://localhost:6060/project/api/v1/employees/
 
-3. POST Employees: http://localhost:6060/api/v1/employees/
+3. POST Employees: http://localhost:6060/project/api/v1/employees/
 
-4. GET Addresses: http://localhost:6060/api/v1/addresses
+4. GET Addresses: http://localhost:6060/project/api/v1/addresses
 
-H2 Database URI: http://localhost:6060/h2-console/
+H2 Database URI: http://localhost:6060/project/h2-console/
 
+Actuator URI: http://localhost:6060/project/actuator
 
 **Sample POST request payload:**
 

@@ -22,6 +22,8 @@ The technologies used in this application are:
 
 9. TestContainers for Integration Testing (Make sure Docker Desktop is running in the machine)
 
+10. Validator For Model/Entity
+
 
 **Entities are:**
 1. Employee

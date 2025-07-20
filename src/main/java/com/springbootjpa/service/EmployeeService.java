@@ -12,4 +12,6 @@ public interface EmployeeService {
 
     List<Employee> persistEmployee(List<Employee> employees);
 
+    void deleteEmployeeById(Long id);
+
 }

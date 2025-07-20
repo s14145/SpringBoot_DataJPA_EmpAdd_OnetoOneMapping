@@ -2,9 +2,8 @@ package com.springbootjpa.config;
 
 import com.springbootjpa.security.JwtAuthenticationEntryPoint;
 import com.springbootjpa.security.JwtAuthenticationFilter;
-import com.springbootjpa.service.CustomUserDetailsService;
+import com.springbootjpa.service.impl.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

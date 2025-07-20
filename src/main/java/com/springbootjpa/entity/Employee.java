@@ -2,10 +2,7 @@ package com.springbootjpa.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -14,7 +11,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
+@Builder
 public class Employee implements Serializable {
 
     private static final long serialVersionUID = -9144413108929194186L;
@@ -33,4 +30,10 @@ public class Employee implements Serializable {
     @JsonIgnoreProperties(value = {"applications", "hibernateLazyInitializer"})
     @JsonManagedReference
     private Address address;
+
+    public Employee(Long employee_Id, String empName, int empAge){
+        this.employee_Id = employee_Id;
+        this.empName = empName;
+        this.empAge = empAge;
+    }
 }

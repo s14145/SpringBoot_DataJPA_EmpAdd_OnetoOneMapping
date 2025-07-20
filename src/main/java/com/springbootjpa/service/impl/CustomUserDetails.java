@@ -1,4 +1,4 @@
-package com.springbootjpa.service;
+package com.springbootjpa.service.impl;
 
 import com.springbootjpa.entity.Privilege;
 import com.springbootjpa.entity.Users;

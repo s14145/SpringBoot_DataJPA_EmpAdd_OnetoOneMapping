@@ -20,4 +20,8 @@ public class Privilege implements Serializable {
     private Long privilege_Id;
 
     private String name;
+
+    public Privilege(String name) {
+        this.name = name;
+    }
 }

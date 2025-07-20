@@ -17,20 +17,26 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable(value = "id") final Long id){
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable(value = "id") final Long id) {
         Employee employee = employeeService.getEmployeeById(id);
         return new ResponseEntity<>(employee, HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<Employee>> getEmployees(){
-       List<Employee> employeeList = employeeService.getEmployees();
-       return new ResponseEntity<>(employeeList, HttpStatus.OK);
+    public ResponseEntity<List<Employee>> getEmployees() {
+        List<Employee> employeeList = employeeService.getEmployees();
+        return new ResponseEntity<>(employeeList, HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<List<Employee>> createEmployee(@RequestBody List<Employee> employees){
+    public ResponseEntity<List<Employee>> createEmployee(@RequestBody List<Employee> employees) {
         List<Employee> employeeList = employeeService.persistEmployee(employees);
         return new ResponseEntity<>(employeeList, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> deleteEmployeeById(@PathVariable(value = "id") final Long id){
+        employeeService.deleteEmployeeById(id);
+         return new ResponseEntity<>("Deleted employee with id " + id + " successfully.", HttpStatus.NO_CONTENT);
     }
 }

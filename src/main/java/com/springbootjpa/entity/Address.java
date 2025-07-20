@@ -31,4 +31,10 @@ public class Address implements Serializable {
     @OneToOne(mappedBy = "address")
     @JsonBackReference
     private Employee employee;
+
+    public Address(Long address_Id, String city, String addressType){
+        this.address_Id = address_Id;
+        this.city = city;
+        this.addressType = addressType;
+    }
 }

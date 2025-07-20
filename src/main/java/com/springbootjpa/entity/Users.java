@@ -33,10 +33,15 @@ public class Users implements Serializable {
     @NotBlank(message = "Password should not be null or empty.")
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_priveleges",
                joinColumns = @JoinColumn(name = "user_Id", referencedColumnName = "user_Id"),
                inverseJoinColumns = @JoinColumn(name = "privilege_Id", referencedColumnName = "privilege_Id"))
     private Set<Privilege> privileges;
 
+    public Users(String username, String password, Set<Privilege> privileges) {
+        this.username = username;
+        this.password = password;
+        this.privileges = privileges;
+    }
 }

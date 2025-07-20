@@ -1,7 +1,8 @@
-package com.springbootjpa.service;
+package com.springbootjpa.service.impl;
 
 import com.springbootjpa.entity.Users;
 import com.springbootjpa.repository.UserRepository;
+import com.springbootjpa.service.impl.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,6 +17,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

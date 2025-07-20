@@ -24,6 +24,8 @@ The technologies used in this application are:
 
 10. Validator For Model/Entity
 
+11. Prometheus for monitoring
+
 
 **Entities are:**
 1. Employee
@@ -66,3 +68,17 @@ Actuator URI: http://localhost:6060/project/actuator
         }
         
 }]
+
+
+**Imp: Used docker image for Prometheus and Grafana**
+1. Started Docker Desktop in local machine
+2. Pulled docker image of both prometheus and grafana
+   - docker pull prom/prometheus
+   - docker pull grafana/grafana
+3. Ran docker container of both prometheus and grafana (make sure prometheus.yml file is in your project's resource folder)
+   - docker run -p 9090:9090 -v <<Project Path>>/src/main/resources/prometheus.yml prom/prometheus
+   - docker run -d --name=grafana -p 3000:3000 grafana/grafana
+4. Access Prometheus and Grafana
+   - Prometheus: http://127.0.0.1:9090
+   - Grafana: http://127.0.0.1:3000 (Default username and password is admin)
+  
